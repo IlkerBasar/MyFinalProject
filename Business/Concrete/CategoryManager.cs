@@ -27,6 +27,8 @@ namespace Business.Concrete
         //Select * from Categories where CategoryId = 3
         public Category GetById(int categoryId)
         {
+            if (categoryId < 0)
+                throw new ArgumentOutOfRangeException(nameof(categoryId));
             return _categoryDal.Get(c => c.CategoryID == categoryId);
         }
     }
