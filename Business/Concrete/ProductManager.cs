@@ -49,11 +49,16 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
+            if (id < 0)
+                throw new ArgumentOutOfRangeException(nameof(id));
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p=>p.CategoryID == id));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
+            if (productId < 0)
+                throw new ArgumentOutOfRangeException(nameof(productId));
+            
             return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductID == productId));   
         }
 
